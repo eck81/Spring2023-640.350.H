@@ -1,0 +1,39 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+    \chapter{Dimension of a Vector Space}
+    In today's class, we mostly revisited work from last lecture. Hence, a lot of notes from today are in the section for last lecture
+
+    \section{Dimension}
+    We will present an introductory example and introduce the definition of dimension. 
+    \begin{defn}{Dimension}{}
+        Let $V$ be a vector space over $F$. Then the dimension of $V$, denoted $\Dim V$ is the number of vectors in any basis of $V$.
+    \end{defn}
+    \begin{example}{}{}
+        We have that $\C$ is a vector space over $\R$. Then we have that $V$ is a two dimensional vector space over $\R$. Then we denote this as $\Dim_\R (\C) = 2$. We have that $\{1, i\}$ is a basis for this vector space.\bigbreak 
+
+        We can also consider that $\C$ is a vector space over $\C$ (in general, any field is a vector space over itself). We have that $\Dim_\C(\C) = 1$ since any basis for $\C$ over this field will have only one member. An example of such a basis is $\{1\}$ (although any nonzero member will work as well). 
+    \end{example}
+
+    The following theorem will be very useful in proving later theorems. 
+    \begin{thrm}{}{}
+        Let $V$ be a vector space over $F$. Let $S\subseteq V$ be linearly independent. Then for $v\in V$, the set $S \cup \{v\}$ is linearly independent if and only if $v\not\in \Span S$.
+    \end{thrm}
+    \begin{proof}
+        \textbf{Proof of $(\implies)$:} assume $v\in V$ such that $S\cup \{v\}$ is linearly independent. Assume, for contradiction, that $v\in \Span S$. Then we have that $v = c_1u_1 + c_2u_2 + \cdots + c_nu_n$ where $c_1, ..., c_2\in F$, for $u_1, u_2, ..., u_n\in S$. So we have that $c_1u_1 + c_2u_2 + \cdots + c_nu_n - v = 0$. But this is a contradiction to the fact that $S\cup \{v\}$ is linearly independent. Thus, we must have that $v\not\in \Span S$. \bigbreak 
+
+        \textbf{Proof of $(\impliedby)$:} let $v\not\in \Span S$. For contradiction, assume that $S\cup \{v\}$ is not linearly independent. Therefore, there must be a subset of $S\cup \{v\}$ that is linearly dependent. So we have $c_1u_1 + \cdots + c_nu_n = 0$ where not all $c_i = 0$ . Then, there must exist a $j\in \{1, ..., n\}$ such that $u_j = 0$, otherwise we would have a linearly dependent subset in $S$ (a contradiction to the fact that $S$ is linearly independent). Without loss of generality, take $u_1 = v$. Then $c_1v + c_2u_2 + \cdots + c_nu_n = 0$. Note that we must have that $c_1 \neq 0$; otherwise, it would contradict the fact that $S$ is linearly independent. Since $c_1$ is nonzero, it must have a multiplicative inverse. So we have that $v = (-c_2c_1^{-1})u_2 + \cdots + (-c_nc_1^{-1})u_n$.
+    \end{proof}
+
+    The theorem below is a stronger version of a theorem that was stated in the previous class. 
+    \begin{thrm}{}{}
+        Let $V$ be a vector space and $S\subseteq V$ is linearly independent. Then $S$ is contained in a basis of $V$.
+    \end{thrm}
+    The proof will be done later on, as it uses the concepts of maximally linearly independent sets. Here's another theorem that is fairly easy to prove. 
+    \begin{thrm}{}{}
+        Let $V$ be a vector space over $F$ with a basis $\{b_1, b_2, ..., b_n\}$. Then each $v\in V$ can be written as a unique linear combination of $b_1, ..., b_n$
+    \end{thrm}
+    \begin{proof}
+        Let $v = a_1b_1 + a_2b_2 + \cdots + a_nb_n$ and $v = c_1b_1 + c_2b_2 + \cdots + c_nb_n$. We must show $a_n = c_n$. Then, we subtract these two to get $(a_1 - c_1)b_1 + (a_2 - c_2)b_2 + \cdots + (a_n - c_n)b_n = 0$. Then since the basis is linearly dependent, we must have that $a_i - c_i = 0$ for all $i\in \{1, ..., n\}$. It follows that $a_i = c_i$ for all $i\in \{1, ..., n\}$. 
+    \end{proof}
+\end{document}

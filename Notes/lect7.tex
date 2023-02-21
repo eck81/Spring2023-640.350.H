@@ -1,0 +1,112 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+    \chapter{Properties Of The Null Space And Range}
+
+    Recall that a linear transformation between vector spaces $V$ and $W$ over a field $F$, is a function $T: V\to W$ such that 
+    \begin{enumerate}
+        \item $T(x+y) = T(x) + T(y)$ for all $x,y\in V$
+        \item $T(kx) = kT(x)$ for all $x\in V$ and $k\in F$
+    \end{enumerate}
+    Mainly, a linear transformation preserves linear combinations between vectors. So we have $T(ax+by) = aT(x) + bT(y)$. Here are some examples of linear transformations. 
+    \begin{itemize}
+        \item From linear algebra: matrix-vector products are linear transformations. So $A(u+v) = Au + Av$ and $A(cu) = c(Au)$. 
+
+        \item From calculus: derivatives and anti-derivatives are linear transformations. 
+
+        \item From geometry: rotations and reflections are linear transformations.
+    \end{itemize}
+
+    \section{Null Spaces \& Ranges}
+    Two important spaces associated with a linear transformation are the null space (kernel) and range. Two important facts about these subspaces are given below 
+    \begin{itemize}
+        \item The null space of $T$ is a subspace of $V$ while the range is a subspace of $W$. 
+        \item The range of a linear transformation is $\Range T = \Span \{T(v_1), T(v_2), ..., T(v_n)\}$ where $\{v_1, v_2, ..., v_n\}$ is a basis of $V$. In other words, we only need to know the images of the basis vectors to generate the range of the transformation.
+    \end{itemize}
+
+    While the null space and range seem unrelated, they are actually somewhat connected. This will be the goal of today's lecture. We will introduce two new terms in this part. 
+    \begin{defn}{Rank \& Nullity}{}
+        For a linear transformation $T: V\to W$, we have 
+        \begin{enumerate}
+            \item The rank of a transformation is the dimension of its range. 
+            \item The nullity of a transformation is the dimension of its null space.
+        \end{enumerate}
+    \end{defn}
+    With this in mind, we now present the following theorem, which details a very simple, but incredibly useful, relationship between the two terms. 
+    \begin{thrm}{}{}
+        Let $T:V\to W$ be an arbitrary linear transformation where $V$ and $W$ are finite. Then we have that 
+        \begin{equation}
+            \rank T + \nullity T = \Dim V
+        \end{equation}
+    \end{thrm}
+    Before presenting a formal proof, we will present a concrete example. 
+    \begin{example}{}{}
+        Consider a linear transformation $T: \R^3 \to \R^2$ given by the rule $T(x_1, x_2, x_3) = (x_1 - x_2, 2x_3)$. The null space is given by $x_3=0$ and $x_1 = x_2$. We can see that the dimension is 1 since a basis for the null space is $\{(1, 1, 0)\}$. \bigbreak 
+
+        We claim that the range of the transformation is all of $\R^2$. For arbitrary $(y_1, y_2)$, we can argue that there is always a preimage of this vector in $\R^3$. This can be done by solving a linear system. 
+    \end{example}
+
+    So here is a proof of the theorem 
+    \begin{proof}
+        Assume $\Dim V = n$ and $\Dim (\Null T) = k$. Note that by a previous theorem, we know that $k\leq n$. To find the rank of $T$, we will generate a basis for the range. Let $\{v_1, v_2, ..., v_k\}$ be a basis for $\Null T$. Now, we can extend this basis to $\{v_1, ..., v_k, v_{k+1}, v_{k+2}, ..., v_n\}$, which is a basis of $V$. Note that there are $n-k$ vectors that were added to the basis. Now consider the vectors $\{T(v_{k+1}), T(v_{k+2}), ..., T(v_n)\}$. Now we claim that this set is a basis for the range of $T$. \par 
+
+        So first we show that $\Range T = \Span \{T(v_1), T(v_2), ..., T(v_k), T(v_{k+1}, ..., T(v_n)\}$. But by choice, we have $\{v_1, ..., v_k\}$ is a basis for the null space. So we get $\Range T = \Span \{T(v_{k+1}, ..., T(v_n)\}$, as desired. \par 
+
+        Now we need to show linear independence. So assume $\sum_{k+1}^n b_iT(v_i) = 0$. We will show that $b_i = 0$. Since $T$ is linear, we have 
+        \begin{equation}
+            \sum_{k+1}^n b_i T(v_i) = T \left( \sum_{k+1}^n b_i v_i \right) = 0
+        \end{equation}
+        So we have that $\sum b_iv_i$ is in the null space of $T$. So we observe that there should be a way to represent this vector as a linear combination of the basis vectors of the null space. This implies 
+        \begin{equation}
+            \sum_{i=k+1}^n b_iv_i - \sum_{i=1}^k c_iv_i=0
+        \end{equation}
+        And since basis vectors are linearly independent, we have $b_i = 0$ and $c_i = 0$
+    \end{proof}
+
+    \section{Injections \& Surjections}
+    Recall that we have the definitions of one-to-one functions and onto functions from Math 300. 
+    \begin{defn}{Injective Functions \& Surjective Transformations}
+        Let $T: V\to W$ be an arbitrary linear transformation. Then, we say $T$ is 
+        \begin{enumerate}
+            \item \textit{One-to-one} (or injective) if $T(v_1) = T(v_2)$ implies $v_1 = v_2$ for all $v_1, v_2 \in V$
+
+            \item \textit{Onto} (or surjective) if for all $w\in W$, there exists $v\in V$ such that $T(v) = w$
+        \end{enumerate}
+    \end{defn}
+
+    We can use the null space and range to determine whether or not a transformation is one-to-one or onto. The results are stated in the following theorems. 
+    \begin{thrm}{}{}
+        A linear transformation $T: V\to W$ is one-to-one if and only if $\Null T = \{0\}$. 
+    \end{thrm}
+    \begin{proof}
+        Proof of $(\implies)$: assume $T$ is one-to-one. Then assume $T(x) = 0$. But from the definition of a linear transformation, we have that $T(0)=0$. Since $T$ is one-to-one, we have $x=0$ and so $\Null T = \{0\}$. \bigbreak 
+
+        \noindent Proof of $(\impliedby)$: assume $\Null T = \{0\}$. Assume that $T(x) = T(y)$. Then, observe that we have 
+        \begin{align*}
+            T(x) &= T(y) \\
+            T(x) - T(y) &= 0 \\
+            T(x - y) &= 0 
+        \end{align*}
+        Then, we have that $x-y\in \Null T$. But the only vector in the null space is $0$. So we must have $x-y=0$. It follows that $x=y$.
+    \end{proof}
+
+    From this fact, we have a simple corollary. 
+    \begin{cor}{}{}
+        Let $T: V\to W$ be a linear transformation with $V$ and $W$ finite and with the same dimension. Then the following are equivalent. 
+        \begin{enumerate}
+            \item $T$ is one-to-one 
+            \item $T$ is onto 
+            \item $\Range T = W$
+        \end{enumerate}
+    \end{cor}
+    \begin{proof}
+        Proof of $(1)\implies (3)$: if $T$ is one-to-one so $\Null T = \{0\}$. Therefore, $\nullity T = 0$ and so $\rank T = n$. By the rank-nullity theorem, we have that $\Dim V = n = \Dim W$. Now observe that by definition, $\rank T = n = \Dim (\Range T)$. Now observe that $\Range T$ is a subspace of $W$. By a previous result, we have $\Range T = W$, as desired. \bigbreak
+
+        \noindent Proof that $(2) \implies (3)$: assume that $T$ is onto. 
+    \end{proof}
+
+    Here is one last theorem, that will be used to connect this topic to the next section. 
+    \begin{thrm}{}{}
+        Let $\{v_1, v_2, ..., v_n\}$ be a basis of $V$. Let $\{w_1, ..., w_n\}$ be $n$ vectors in $W$ (they don't have to be distinct). Then, there exists a unique linear transformation $T: V\to W$ such that $T(v_i) = w_i$.
+    \end{thrm}
+\end{document}

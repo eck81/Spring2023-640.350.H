@@ -1,0 +1,173 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+    \chapter{Basic Abstract Algebra \& Vector Spaces}
+
+    \section{Basic Abstract Algebraic Structures}
+    Before beginning, we will present some definitions related to abstract algebra
+
+    \begin{defn}{Binary Operation}{}
+        Let $S$ be a set. A binary operation $\star$ on $S$ is a function $\star : S\times S \to S$
+    \end{defn}
+    In this class, we will use the notation $\star(s_1, s_2)$ for $s_1 \star s_2$. This notation emphasizes that the binary operation is a function on the operands.
+    
+    \begin{example}{}{}
+        Consider the set of integers $\Z$. The binary operation $+: \Z \times \Z \to \Z$ is a binary operation on the set of integers where $+(m, n) = m + n$.
+    \end{example}
+
+    \subsection{Groups}
+    Now we will present the concept of a group. Here is the definition 
+    \begin{defn}{Group}{}
+        Let $\star$ be a binary operation on a set $S$. We say that $(S, \star)$ is a group provided that it satisfies the following three properties:
+        \begin{enumerate}
+            \item The operation $\star$ is associative. We have $a\star (b\star c) = (a\star b) \star c$ for all $a,b,c\in S$.
+
+            \item There exists an element $e\in S$ such that for all $s\in S$, $e\star s = s\star e = s$.
+
+            \item For all $s\in S$, there exists $s'\in S$ such that $s\star s' = s'\star s = e$.
+        \end{enumerate}
+    \end{defn}
+    There are thus four requirements that a group and its operation must satisfy. 
+    \begin{itemize}
+        \item The group is closed under its respective operation
+        \item The group operation is associative 
+        \item There is an element in the group that serves as the identity under that operation. We will prove later that this identity element is unique.
+        \item All elements of the group have an inverse that is also in the group. As with the uniqueness of the identity, we will prove that the inverse of any particular element is unique.
+    \end{itemize}
+    Another important property of groups is closure. That is, for any two elements, the result of the group operation must be contained in the group. This is implied in the definition of a binary operation on a set.
+
+    \begin{example}{}{}
+        We have that $(\Z, +)$ presented in the example above is a group. This is because we have that addition on integers is associative. The element 0 is an identity of the group and for all integers $m$, the additive inverse is $-m$.
+    \end{example}
+
+    \begin{prop}{}{}
+        The identity element of a group is unique.
+    \end{prop}
+    \begin{proof}
+        Let $e_1$ and $e_2$ both be identity elements of a group. Then we have that $e_1 \star e_2 = e_2$ since $e_1$ is an identity of the group. However, we also have that $e_1 \star e_2 = e_1$ since $e_2$ is also an identity of the group. Thus, we have $e_1 = e_2$, as desired.
+    \end{proof}
+
+    \begin{prop}{}{}
+        Suppose that $(S, \star)$ is an arbitrary group. Then for all members of the group, the inverse of that member is unique.
+    \end{prop}
+    \begin{proof}
+        Let $s\in S$ and let $s_1$ and $s_2$ be inverses of $s$. Also let $e$ be the identity of the group. We have that $s_1 = s_1 \star e$. Since $s_2$ is an inverse of $s$, we have $e = s\star s_2$. So we have $s_1 = s_1 \star (s \star s_2)$. By associativity, we have $s_1 = (s_1 \star s) \star s_2$. Since $s_1$ is an inverse of $s$, we have $s_1 = s_2$, as desired.
+    \end{proof}
+
+    \begin{example}{}{}
+        Here are some non-examples of groups. 
+        \begin{itemize}
+            \item $(\R, \times)$ is not a group since $0$ does not have an inverse. 
+
+            \item $(\N, +)$ is not a group since it has no identity. 
+
+            \item $(\N, \times)$ is not a group since not all elements have an inverse that is also a natural number (only 1 does)
+
+            \item Let $S$ be a non-empty set. Then $(\mathcal{P}(S), \setminus)$ is not a group (where ``$\setminus$'' denotes set difference). This is because set difference is not associative.
+        \end{itemize}
+    \end{example}
+
+    \begin{example}{}{}
+        Here is a more interesting example of a group. For a non-empty set $S$, $(\mathcal{P}(S), \triangle)$ is a group (here $\triangle$ is the symmetric difference). Recall that the symmetric difference of two sets $A$ and $B$ is defined as 
+        \begin{equation}
+            A\ \triangle\ B = (A\setminus B) \cup (B\setminus A)
+        \end{equation}
+        We have that $\varnothing$ is the identity element and for all sets $A \in \mathcal{P}(S)$, we have that $A$ is the inverse of itself (since $A\ \triangle\ A = \varnothing$. The symmetric difference is also associative since set union is associative.
+    \end{example}
+    Note that the axioms of a group do not specify that the group operation needs to be commutative; in fact, it may not be. In most of the examples above, the operation was commutative, but this need not be the case. This fact motivates the following definition.
+
+    \begin{defn}{Abelian Groups}{}
+        For a group $(S, \star)$ we say the group is abelian if $\star$ is commutative (i.e. if $a\star b = b\star a$). If the operation is not commutative, then the group is non-abelian. 
+    \end{defn}
+
+    \begin{example}{}{}
+        The integers under addition is an abelian group. Here are some examples of non-abelian groups. 
+        \begin{itemize}
+            \item The set $\Aut(\R)$ denotes the set of all bijetions of $\R$. Then, $(\Aut(\R), \circ)$ is a group. The identity is the identity function and bijections are invertible. We also have that function composition is associative but it is not commuative. 
+
+            \item $GL_n(\R)$ is the general linear group. It is the set of all invertible $n\times n$ matrices. This set under matrix multiplication does not form a group. The identity is the identity matrix and the matrices are invertible. However, matrix multiplication is not commutative. 
+
+            \item Define $\N_3 = \{1, 2, 3\}$. We have that $\Aut(\N_3)$ is a non-abelian group. We define $S_3 \coloneqq \Aut(\N_3)$. 
+        \end{itemize}
+    \end{example}
+
+    
+    \subsection{Fields}
+    In linear algebra we will primarily study vector spaces which exist over a field. With the notion of a group established, we will now define a field. 
+    \begin{defn}{Field}{}
+        Let $S$ be a nonepty set with binary operations $+$ and $\times$. Then, we have $(S, +, \times)$ is a field provided that 
+        \begin{enumerate}
+            \item $(S, +)$ and $(S', \times)$ are abelian groups. Here $S' = S\setminus \{0\}$
+
+            \item For all $s_1, s_2, s_3\in S$, we have $s_1 \times (s_2 + s_3) = s_1\times s_2 + s_1\times s_3$. So the two operations obey a distributive law (multiplication distributes over addition).
+        \end{enumerate}
+    \end{defn}
+
+    \begin{example}{}{}
+        The two relevant examples of a field for this class are $(\R, +, \times)$ and $(\C, +, \times)$. Here, $\C$ is the set of complex numbers.
+    \end{example}
+
+    \section{Vector Spaces}
+    We now present the definition of a vector space, which will be central to linear algebra. 
+
+    \begin{defn}{Vector Space}{}
+        A vector space $V$ over a field $(F, +, \cdot)$ is an abelian group $(V, +)$ such that there is an operation $\star : F\times V \to V$ with the properties
+        \begin{enumerate}
+            \item $a\star (u + v) = a\star u + a \star v$ for all $a\in F$ and for all $u, v\in V$. 
+
+            \item We have $1\star v = v$ for all $v\in V$.
+
+            \item $(a\cdot b) \star v = a\star (b \star v)$
+
+            \item $(a+b) \star v = (a\star v) + (b\star v)$
+        \end{enumerate}
+    \end{defn}
+
+    \begin{example}{}{}
+        We have that $\R$ is a field. $\R^3$ is the set of all 3-tuples with real numbered entries. We define the operation $\star: \R \times \R^3 \to \R^3$ as follows
+        \begin{equation*}
+            \left( r, \begin{bmatrix} a_1 \\ a_2 \\ a_3 \end{bmatrix} \right) = \begin{bmatrix} ra_1 \\ ra_2 \\ ra_3 \end{bmatrix}
+        \end{equation*}
+        It can be shown that this function does satisfy the axioms of a vector space.
+    \end{example}
+
+    \section{End of Class Problems}
+    For these problems, an element with an arrow over it denoted an element of a vector space while those without an arrow is from the field.
+    \begin{prop}{}{}
+        $0 \star \Vec{v} = \Vec{0}$.
+    \end{prop}
+    \begin{proof}
+        We have 
+        \begin{align*}
+            0 \star \Vec{v} &= (0 + 0) \star \Vec{v} \\
+            &= 0\star \Vec{v} + 0 \star \Vec{v} \\
+        \end{align*}
+        Adding the additive inverse of $0\star \Vec{v}$ to both sides, we get $0\star \Vec{v} = \Vec{0}$, as desired.
+    \end{proof}
+
+    \begin{prop}{}{}
+        For all $a\in F$, we have $a\star \Vec{0} = \Vec{0}$. 
+    \end{prop}
+    \begin{proof}
+        We have 
+        \begin{align*}
+            a \star 0 &= a \star (0 + 0) \\
+            &= a\star 0 + a\star 0
+        \end{align*}
+        Adding the additive inverse of $a\star 0$ gives $a\star 0 = 0$, as desired.
+    \end{proof}
+
+    \begin{prop}{}{}
+        $(-1) \star \Vec{v} = -\Vec{v}$. Here, $-\Vec{v}$ is the inverse of $\Vec{v}$ under the operation $+$.
+    \end{prop}
+    \begin{proof}
+        We want to show $(-1)\star \Vec{v}$ is the additive inverse of $\Vec{v}$. We will show $(-1)\star \Vec{v} + \Vec{v} = \Vec{0}$. We have 
+        \begin{align*}
+            (-1) \star \Vec{v} + \Vec{v} &= (-1) \star \Vec{v} + 1\star \Vec{v} \\
+            &= (-1 + 1) \star \Vec{v} \\
+            &= 0 \star \Vec{v} \\
+            &= \Vec{0}
+        \end{align*}
+        And so the desired result is obtained.
+    \end{proof}
+\end{document}

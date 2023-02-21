@@ -1,0 +1,101 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+    \chapter{Linear Transformations}
+
+    \section{Linear Transformations Definitions}
+    We will now define the notion of a linear transformation. 
+    \begin{defn}{Linear Transformation}{}
+        Let $V$ and $W$ be vector spaces over $F$. Then a function $L: V\to W$ is called a linear transformation if $L(cv_1 + v_2) = cL(v_1) + L(v_2)$ for all $c\in F$ and $v_1,v_2\in V$.
+    \end{defn}
+
+    Here is another related definition. 
+    \begin{defn}{Linear Operator}{}
+        A linear transformation $L:V\to V$ is a linear operator
+    \end{defn}
+
+    \begin{example}{}{}
+        Let $L:V\ to W$ be a linear transformation. Then we note that 
+        \begin{align*}
+            L(0) &= L(0 + 0) \\
+            &= L(0) + L(0)
+        \end{align*}
+        And from this fact, it follows that $L(0)=0$
+    \end{example}
+
+    \begin{example}{}{}
+        Here is a slightly harder example. Recall that $P(\R)$ is the set of polynomials with real-valued coefficients. Then $D: P(\R) \to P(\R)$ is the derivative. Then $D$ is linear since 
+        \begin{enumerate}
+            \item $D(f) = f'$
+            \item $D(cf + g) = cf' + g' = cD(f) + D(g)$
+        \end{enumerate}
+    \end{example}
+
+    \begin{example}{}{}
+        The identity function and 0 functions are both examples of a linear transformation. They are defined as $\mathbf{1}_V: V\to V$ where $\mathbf{1}_V(v) = v$ and $\mathbf{0} : V\to V$ where $\mathbf{0}(v) = 0$
+    \end{example}
+
+    \begin{example}{}{}
+        Here is an example from Math 250. Let $V = \mathbb{F}^n$ and $W = \mathbb{F}^m$. Then $L: V\to W$ defined as 
+        \begin{equation}
+            L\left( \begin{bmatrix} a_1 \\ a_2 \\ \vdots \\ a_n \end{bmatrix} \right) = \begin{bmatrix} a_1 \\ \vdots \\ a_m \end{bmatrix}
+        \end{equation}
+        is called a projection and is a linear transformation. \bigbreak 
+
+        For the same fields, we can define additional linear transformations by using matrix multiplication. Let $L_A: $
+    \end{example}
+
+    Now we will define linear transformations by introducing subspaces for linear transformations. 
+    \begin{defn}{Null Space (Kernel)}{}
+        Let $L: V\to W$ be a linear transformation. Then we define the null space (or kernel) of $L$ to be the set 
+        \begin{equation}
+            \Null L = \{ v\in V : L(v) = 0\}
+        \end{equation}
+    \end{defn}
+
+    \begin{defn}{Range}{}
+        Let $L: V\to W$ be a linear transformation. Then the range of $L$ is defined as 
+        \begin{equation}
+            \Range L = \{L(v) : v\in V\}
+        \end{equation}
+    \end{defn}
+
+    \begin{prop}{}{}
+        For $L: V\to W$ a linear transformation, $\Null L$ is a subspace of $V$ and $\Range L$ is a subspace of $W$. 
+    \end{prop}
+    \begin{proof}
+        First we show that $\Null L$ is a subspace of $V$. We will show the three requirements for a subspace 
+        \begin{enumerate}
+            \item Since $0v = 0$ for any $v\in V$, we have $0\in \Null L$
+            \item Let $x,y\in \Null T$. Then $Lx = 0$ and $Ly = 0$. Then, we have $L(x + y) = L(x) + L(y) = 0 + 0 = 0$. So $x+y\in \Null T$. 
+            \item Let $x\in \Null T$ and $c\in F$. Then $Lx = 0$ and so $L(cx) = cL(x) = c(0) = 0$. So $cx\in \Null T$.
+        \end{enumerate}
+        So we have $\Null L$ is a subspace of $V$. Now we will show that $\Range L$ is a subspace of $W$. 
+        \begin{enumerate}
+            \item Since $0\in V$, we have $L(0) = 0$. So $0 \in \Range L$
+            \item Let $x,y\in \Range L$. Then there exists $v_1\in V$ such that $L(v_1) = x$ and there exists $v_2\in V$ such that $L(y) = v_2$. Then we have $L(x + y) = L(x) + L(y) = v_1 + v_2$. So 
+        \end{enumerate}
+    \end{proof}
+
+    This theorem will only work for finite dimensional vector spaces. 
+    \begin{thrm}{}{}
+        Let $V,W$ be finite dimensional vector spaces over $F$. Let $B = \{v_1, ..., v_n\}$ be a basis of $V$. Then given any $w_1, ..., w_n\in W$, there exists a unique linear transformation $L: V\to W$ such that $L(v_i) = w_i$ for all $i \in \{1, ..., n\}$.
+    \end{thrm}
+    \begin{proof}
+        Let $v\in V$. Then we know there exists unique scalars $a_1, ..., a_n$ such that $v = a_1v_1 + \cdots + a_nv_n$. Now define $L(v) = a_1w_1 + \cdots + a_nw_n$. We need to confirm that $L$ is linear. So let $v, v'\in V$ and let $c\in F$. Then there exist unique scalars $a_1, ..., a_n$ such that $v = \sum_{i=1}^n a_iv_i$ and $a_1', ..., a_n'$ such that $v' = \sum_{i=1}^n a_i'v_i$. Then $cv + v' = (ca_1 + a_1')v_1 + \cdots + (ca_n + a_n')v_n$. Note that this representation is unique in terms of $v_1, ..., v_n$. So by definition , we have $L(cv + v') = (ca_1 + a_1')w_1 + \cdots + (ca_n + a_n')w_n = c(a_1w_1 + \cdots + c_nw_n) + (a_1'w_1 + \cdots + a_n'w_n) = cL(v) + L(v')$. Thus, we have $L$ is linear. \par 
+
+        Now we show the uniqueness part. So let $L_1(v_i) = L_2(v_i)$ for all $i\in \{1, ..., n\}$. Then we have $L_1(v_i) - L_2(v_i) = 0$. This gives us that $(a_1w_1 + \cdots + a_nw_n) - (a_1w_1 + \cdots + a_nw_n) = 0$. Since $a_1v_1 + \cdots + a_nv_n$ is the unique linear combination, we have $L_1 = L_2$ since $v$ is arbitrary.
+    \end{proof}
+
+    In order to further our study of linear transformations, we will introduce the concept of an ordered basis. 
+    \begin{defn}{Ordered Basis}{}
+        Let $V$ be a finite dimensional vector space over $F$. Then an ordered basis of $V$ is an $n$-tuple $(v_1, ..., v_n)$ where $n = \Dim V$ and $\{v_1, ..., v_n\}$ is a basis of $V$.
+    \end{defn}
+    Let $L: V\to W$ be a linear transformation and $B' = (w_1, ..., w_n)$ be an ordered basis of $W$. Then, given any $v\in V$, $L(v) = a_1w_1 + \cdots + a_nw_n$ for unique scalars $a_1, ..., a_n\in F$ (since $L(v)$ is in $W$, any vector can be represented in this manner). Using this, we define the notation the notation 
+    \begin{equation}
+        [ L(v) ]_{B'} \coloneqq \begin{bmatrix}
+            a_1 \\ \vdots \\ a_n
+        \end{bmatrix}
+    \end{equation}
+    This vector in $F^n$ is the $B'$-coordinate vector of $L(v)$.
+\end{document}

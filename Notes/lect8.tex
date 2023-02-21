@@ -1,0 +1,107 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+    \chapter{Matrix Representations of Linear Transformations}
+
+    \section{Matrix Representations}
+
+    We will revisit the idea of coordinate vectors in a particular basis. Let $V$ be a finite dimensional vector space over $F$. Let $B = (b_1, b_2, ..., b_n)$ be an ordered basis of $V$. Then given $v\in V$, we let the notation
+    \begin{equation}
+        [v]_B = \begin{bmatrix}
+            a_1 \\ a_2 \\ \vdots \\a_n
+        \end{bmatrix} \in F^n
+    \end{equation}
+    where $v = \sum_{i=1}^n a_ib_i$. From the properties of a basis, this representation is unique. We call this vector the $B$-coordinate vector of $v$. We will now define a notation that can help us express any linear transformation. 
+    \begin{defn}{Matrix Representation}{}
+        Let $V,W$ be finite dimensional vector spaces over $F$. Let $B = (b_1, b_2, ..., b_n)$ be an ordered basis of $V$ and $\Gamma = (g_1, g_2, ..., g_m)$ be an ordered basis of $W$. Let $L:V\to W$ be a linear transformation. Then, we define the matrix denoted $[L]_B^\Gamma$ where the $j$th column is given as $[L(b_j)]_\Gamma$ for $j = 1, ..., n$. This matrix is called the matrix representation of $L$.
+    \end{defn}
+    Note that both $V$ and $W$ are isomorphic to $F^n$ and $F^m$. From Math 250, we know that a linear transformation from these two vector spaces can be represented as a $m\times n$ matrix. Some more examples are given below 
+
+    \begin{example}{}{}
+        Let $V = P_3(\R)$ and $W = P_2(\R)$. The differentiation operation (taking derivatives) is a linear transformation. So $D: V\to W$ given by $D(f) = df/dx$. Then take $B = (1, x, x^2, x^3)$ and $\Gamma = (1, x, x^2)$ be ordered bases for $V$ and $W$, respectively. Then we have that 
+        \begin{align*}
+            D(1) &= 0 \\
+            \begin{bmatrix} D(1) \end{bmatrix}_\Gamma &= \begin{bmatrix}
+                0 \\ 0 \\ 0
+            \end{bmatrix} \\
+            D(x) &= 1 \\
+            \begin{bmatrix} D(x) \end{bmatrix}_\Gamma &= \begin{bmatrix}
+                1 \\ 0 \\ 0
+            \end{bmatrix} \\
+            D(x^2) &= 2x \\
+            \begin{bmatrix} D(x^2) \end{bmatrix}_\Gamma &= \begin{bmatrix}
+                0 \\ 2 \\ 0
+            \end{bmatrix} \\
+            D(x^3) &= 3x^2 \\
+            \begin{bmatrix} D(x^3) \end{bmatrix}_\Gamma &= \begin{bmatrix}
+                0 \\ 0 \\ 3
+            \end{bmatrix}
+        \end{align*}
+        So we can conclude that the matrix representation of this transformation in these two bases is 
+        \begin{equation*}
+            \begin{bmatrix} D \end{bmatrix}_{B}^{\Gamma} = \begin{bmatrix}
+                0 & 1 & 0 & 0 \\
+                0 & 0 & 2 & 0 \\
+                0 & 0 & 0 & 3
+            \end{bmatrix}
+        \end{equation*}
+    \end{example}
+    Here is a proposition that can show us to how to use the generated matrix 
+    \begin{prop}{}{}
+        Let $V,W$ be finite dimensional vector spaces over $F$. Let $B = (b_1, b_2, ..., b_n)$ be an ordered basis of $V$ and $\Gamma = (g_1, g_2, ..., g_m)$ be an ordered basis for $W$. Let $L:V\to W$ be a linear transformation. Then given $v\in V$, we have 
+        \begin{equation}
+            \begin{bmatrix} L(v) \end{bmatrix}_\Gamma = \begin{bmatrix} L \end{bmatrix}_B^\Gamma \begin{bmatrix} v \end{bmatrix}_B
+        \end{equation}
+    \end{prop}
+    \begin{proof}
+        
+    \end{proof}
+    We can represent this using a commutative diagram. 
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+            \node[] at (2, 0) {$V$};
+        \end{tikzpicture}
+    \end{figure}
+
+    Here are two important definitions that will be used to define a vector space of linear transformations
+    \begin{defn}{Addition \& Scalar Multiplication of Linear Transformations}{}
+        Let $V,W$ be vector spaces over $F$. Let $L_1, L_2$ be linear transformations from $V\to W$. Define $(L_1 + L_2) : V\to W$ as $(L_1 + L_2)(x) = L_1(x) + L_2(x)$ for all $x\in V$. Define $\alpha L_1: V\to W$ as $(\alpha L_1)(x) = \alpha L(x)$ for all $\alpha \in F$ and $x\in V$
+    \end{defn}
+
+    \begin{prop}{}{}
+        The functions $L_1 + L_2$ and $\alpha L_1$ defined above are linear transformations.
+    \end{prop}
+    \begin{proof}
+        We have 
+        \begin{align*}
+            (L_1 + L_2)(x + y) &= L_1(x + y) + L_2(x + y) \\
+            &= L_1(x) + L_1(y) + L_2(x) + L_1(y) \\
+            &= L_1(x) + L_2(x) + L_1(x) + L_1(y) \\
+            &- (L_1 + L_2)(x) + (L_1 + L_2)(y)
+        \end{align*}
+        Also, we have 
+        \begin{align*}
+            (\alpha(L_1 + L_2))(x + y) &= 
+        \end{align*}
+    \end{proof}
+
+    Now we can define the vector space that contains all linear transformations between two vector spaces. 
+    \begin{defn}{Vector Space of Linear Maps}{}{}
+        Let $\mathcal{L}(V,W)$ be the set of all linear transformations from $V$ to $W$, where $V,W$ are vector spaces over $F$.
+    \end{defn}
+    \begin{prop}{}{}
+        The set $\mathcal{L}(V,W)$ as defined above is a vector space over $F$.
+    \end{prop}
+    \begin{proof}
+        First we show that the set is an abelian group under vector addition. 
+        \begin{enumerate}
+            \item The 0 map where $L(v) = 0$ for all $v\in V$ is the identity map
+            \item By definition, we have $(L_1 + L_2)(x) = L_1(x) + L_2(x) = L_2(x) + L_1(x) = (L_2 + L_1)(x)$ for all $x\in V$. So the group is abelian 
+            \item 
+            \item 
+        \end{enumerate}
+    \end{proof}
+
+    From above, if $V$ and $W$ are finite, we know that every linear transformation has a matrix representation. So we can realize the set $\mathcal{L}(V,W)$ as the set of $M_{m\times n}(F)$, the set of all $m\times n$ matrices 
+\end{document}

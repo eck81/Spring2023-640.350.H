@@ -1,0 +1,104 @@
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[margin = 1.0in]{geometry}
+\RequirePackage{amsmath}
+\RequirePackage{amsfonts}
+\RequirePackage{amssymb}
+\RequirePackage{amsthm}
+\RequirePackage{float}
+\RequirePackage{tikz}
+\RequirePackage{pgfplots}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{xcolor}
+\RequirePackage{titlesec}
+\RequirePackage[hidelinks]{hyperref}
+\RequirePackage{mathtools}
+\pgfplotsset{compat = 1.18}
+\tcbuselibrary{skins}
+\tcbuselibrary{theorems}
+\tcbuselibrary{breakable}
+
+\renewcommand{\chaptername}{Lecture}
+
+\newtcbtheorem[number within = chapter]{thrm}{Theorem}{
+    blanker, sharp corners, 
+    coltitle = black, 
+    fonttitle = \bfseries, 
+    before skip = 8pt, 
+    after skip = 8pt,
+    borderline = {1pt}{0pt}{red},
+    left = 0.25cm,
+    toptitle = 0.25cm,
+    bottom = 0.25cm,
+    right = 0.25cm,
+    breakable
+}{thrm}
+
+\newtcbtheorem[number within = chapter]{defn}{Definition}{
+    blanker, sharp corners, 
+    coltitle = black, 
+    fonttitle = \bfseries, 
+    before skip = 8pt, 
+    after skip = 8pt,
+    borderline = {1pt}{0pt}{cyan},
+    left = 0.25cm,
+    toptitle = 0.25cm,
+    bottom = 0.25cm,
+    right = 0.25cm,
+    breakable
+}{def}
+
+\newtcbtheorem[number within = chapter]{prop}{Proposition}{
+    blanker, sharp corners, 
+    coltitle = black, 
+    fonttitle = \bfseries, 
+    before skip = 8pt, 
+    after skip = 8pt,
+    borderline = {1pt}{0pt}{green},
+    left = 0.25cm,
+    toptitle = 0.25cm,
+    bottom = 0.25cm,
+    right = 0.25cm,
+    breakable
+}{pro}
+
+\newtcbtheorem[number within = chapter]{example}{Example}{
+    blanker, sharp corners, 
+    coltitle = black, 
+    fonttitle = \bfseries, 
+    before skip = 8pt, 
+    after skip = 8pt,
+    borderline = {1pt}{0pt}{blue},
+    left = 0.25cm,
+    toptitle = 0.25cm,
+    bottom = 0.25cm,
+    right = 0.25cm,
+    breakable
+}{exam}
+
+\newtcbtheorem[number within = chapter]{cor}{Corollary}{
+    blanker, sharp corners, 
+    coltitle = black, 
+    fonttitle = \bfseries, 
+    before skip = 8pt, 
+    after skip = 8pt,
+    borderline = {1pt}{0pt}{purple},
+    left = 0.25cm,
+    toptitle = 0.25cm,
+    bottom = 0.25cm,
+    right = 0.25cm,
+    breakable
+}{exam}
+
+% Blackboard fonts
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\Dim}{dim}
+\DeclareMathOperator{\Null}{Null}
+\DeclareMathOperator{\Range}{Range}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\nullity}{nullity}

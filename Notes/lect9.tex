@@ -1,0 +1,71 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+    \chapter{Invertibility Of Linear Transformations \& Isomorphisms}
+
+    \section{Invertibility Of Linear Transformations}
+    We define the inverse of a linear transformation below
+
+    \begin{defn}{Inverse Of A Linear Transformation}{}
+        Let $L: V\to W$ be a linear transformation. If there exists $U: W\to V$ such that $U\circ L = \mathbb{1}_V$ and $L\circ U = \mathbb{1}_W$ then we say $L$ is invertible. 
+    \end{defn}
+    For simplicity of notation, we shorten $U\circ L$ as $UL$. Also note that we have that $L$ is invertible if and only if $L$ is bijective (both injective and surjective). 
+
+    \begin{example}{}{}
+        Let $T: P_1(\R) \to \R^2$ given by the rule $T(a+bx) = (a, a+b)$. Note that $T$ is indeed a linear transformation (check it later). Then the inverse of this transformation is $U(c,d) = c + (d-c)x$. Check (later) that this is indeed the inverse by showing $TU$ and $UT$ both equal the identity.
+    \end{example}
+    Before moving forward, here are some notations. For a linear transformation $L:V\to W$ then the inverse $U:W\to V$ is unique. We denote this function as $L^{-1}$. \par 
+
+    Here are some important propositions regarding the inverse of a linear transformation. 
+    \begin{prop}{}{}
+        If $V,W$ are vector spaces over a field $F$ and let $L:V\to W$ be an invertible linear transformation. Then we have that $L^{-1}: W\to V$ is a linear transformation
+    \end{prop}
+    \begin{proof}
+        We need to show $L^{-1}(w_1 + cw_2) = L^{-1}(w_1) + cL^{-1}(w_2)$. Then, it is sufficient to show that 
+        \begin{align*}
+            L (L^{-1}(w_1 + cw_2)) &= L(L^{-1}(w_1)) + cL(L^{-1}(w_2)) \\
+            &= w_1 + cw_2
+        \end{align*}
+        Since $L$ is bijective, the equalities above are valid.
+    \end{proof}
+
+    Here is a corollary to this proposition. 
+    \begin{cor}{}{}
+        Let $L: V\to W$ be a linear transformation that is invertible. Then $V$ is finite dimensional if and only if $W$ is finite dimensional. Furthermore, if both are finite dimensional, then $\Dim V = \Dim W$.
+    \end{cor}
+
+    \subsection{Matrix Representations}
+    Now we will present some results concerning the matrix representation of a linear transformation. 
+    \begin{thrm}{}{}
+        Let $V, W$ be finite dimensional vector spaces over $F$. Let $T: V\to W$ be a linear transformation. Also, let $\beta$ and $\gamma$ be ordered bases for $V$ and $W$ respectively. Then $T$ is invertible if and only if the matrix $[T]_\beta^\gamma$ is invertible. Moreover, the matrix $[T^{-1}]_\gamma^\beta = \left( [T]_\beta^\gamma \right)^{-1}$.
+     \end{thrm}
+     \begin{proof}
+         Since $T$ is invertible, we know the inverse exists. Now, we know that there is a matrix $B = [T^{-1}]_\gamma^\beta$. We claim that this matrix is the inverse of $[T]_\beta^\gamma$. Note that matrix multiplication corresponds to composition of the linear transformations. Then, we have $BA = [T^{-1}T]_\beta^\beta = I$ and $AB = [TT^{-1}]_\gamma^\gamma = I$ since $T^{-1}T$ and $TT^{-1}$ are the identity functions.  
+     \end{proof}
+
+     \begin{example}{}{}
+        Let $F^n$ be a vector space over field $F$ (has dimension $n$). Let $A$ be an $n\times n$ matrix with entries in $F$. Define $L_A : F^n \to F^n$ using the rule
+        \begin{equation*}
+            L_A\left( \begin{bmatrix} a_1 \\ \vdots \\ a_n \end{bmatrix} \right) = A\begin{bmatrix} a_1 \\ \vdots \\ a_n \end{bmatrix}
+        \end{equation*}
+        Note that $L_A$ is invertible if and only if $A$ is invertible (corollary below)
+     \end{example}
+
+     \begin{cor}{}{}
+         The linear transformation corresponding to multiplying by a matrix $A$ is invertible if and only if $A$ is invertible. 
+     \end{cor}
+     \begin{proof}
+         Let $\beta = (e_1, e_2, ..., e_n)$ be the standard basis for $F^n$. Then observe that $[L_A]_\beta^\beta = A$. Then, the result follows from the previous theorem.
+     \end{proof}
+
+     \section{Isomorphisms}
+     We now define an isomorphism between two vector spaces. 
+     \begin{defn}{Isomorphic Vector Spaces}{}
+         Let $V$ and $W$ be vector spaces over $F$. Then we say $V$ and $W$ are isomorphic if and only if there exists an inveritble linear transformation $L:V\to W$.
+     \end{defn}
+     We use the notation $V \cong W$ to say that $V$ and $W$ are isomorphic. Here is a theorem that establishes isomorphic vector spaces, if they are finite dimensional. 
+
+     \begin{thrm}{}{}
+         Let $V$ and $W$ be finite dimensional vector spaces over $F$. Then $V$ and $W$ are isomorphic if and only if $\Dim V = \Dim W$.
+     \end{thrm}
+\end{document}

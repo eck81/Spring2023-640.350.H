@@ -1,0 +1,130 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+    \chapter{Subspace, Linear Combinations \& Span}
+
+    Here is a review of the properties of a vector space. If $(V, +_V)$ is an abelian group, $(F, +_F, \cdot_F)$ is a field and $\cdot : F\times V \to V$ is a map such that 
+    \begin{enumerate}
+        \item $1\cdot v = v$
+        \item $(a_1 +_F a_2) \cdot v = a_1\cdot v +_V a_2\cdot v$
+        \item $(a_1\cdot _F a_2)\cdot v = a_1 \cdot (a_2 \cdot v)$
+    \end{enumerate}
+    Then, $((V, +_V), (F, +_F, \cdot_F))$ is a vector space over $F$ and the operation $\cdot$ is called \emph{scalar multiplication}. This is the more rigorous/formal definition of a vector space. The most common vector spaces involve the field $\R$ and $\C$ and the corresponding vector space is $\R^n$ and $\C^n$. \par 
+
+    Here is another example of a vector space that is presented in the book. 
+    \begin{example}{}{}
+        Take the field to be $\R$ and let $P(\R)$ be the set of all polynomials with real coefficients. We will show that there is an operation that makes this set a vector space. \bigbreak 
+
+        First, we define the group structure. The operation $+_P$ denotes the sum of two polynomials. So for $f,g\in P(\R)$, we have the polynomial sum is $f +_P g$. Note that this definition of polynomial addition is commutative. We define the scalar multiplication of the polynomial as $(r\cdot f)(x) = rf(x)$ for all $r\in \R$ and $f\in P(\R)$. \bigbreak 
+
+        It should also be noted that this vector space is infinite-dimensional. 
+    \end{example}
+
+    \begin{example}{}{}
+        For the field $\R$ let $n\in \N$. We define $P_n(\R)$ be the set of all polynomials with coefficients of degree $\leq n$, Then $P_n(\R)$ is a vector space of $\R$. We will prove later that this vector space is finite-dimensional.
+    \end{example}
+
+    \section{Subspaces}
+    Below, we present the definition of subspaces. 
+
+    \begin{defn}{Subspace}{}
+        Let $V$ be a vector space over $F$ and let $W$ be a subset of $V$. Then the set $W$ is called a subspace of $V$ if $W$ is a vector space over $F$ with the restrictions of the operations for the vector space $V$. 
+    \end{defn}
+    From the restrictions on the operations we see that for all $w\in W$ and for all $a\in F$, we see that $w_1 + w_2 \in W$ (so it is closed under vector addition). Also $a\cdot w \in W$ (so it is closed under scalar multiplication). So the inverse of any $w$ will also be in $W$. Hence, we see that $W$ is abelian since it is a vector space. 
+
+    \begin{example}{}{}
+        For any vector space $V$ there will always be two trivial subspaces. One of them is $V$ itself and the other is the subspace $\{0\}$. 
+    \end{example}
+
+    \begin{example}{}{}
+        Let $V = \R^2$. Then two subspaces of $V$ include $W_x = \R \times \{0\}$ and $W_y = \{0\} \times \R$. These subspaces represent the $x$-axis and $y$-axis respectively. This can be generalized for any $\R^n$.
+    \end{example}
+
+    \begin{example}{}{}
+        From earlier, we can show that $P_n(\R)$ is a subspace of $P(\R)$. 
+    \end{example}
+
+    \begin{thrm}{}{}
+        Let $V$ be a vector space over $F$ and $W \subseteq V$ is a subspace of $V$ if and only if the following three conditions hold
+        \begin{enumerate}
+            \item $0\in W$
+            \item For all $x, y\in W$, we have $x+y\in W$
+            \item For all $x\in W$ and for all $c\in F$, we have $cx\in W$
+        \end{enumerate}
+    \end{thrm}
+    \begin{proof}
+        \textbf{Proof of $(\implies)$:} assume that $W$ is a subspace of $V$. We will show the three properties hold. Since $W$ is a vector space, we know that it is an abelian group and so it is closed under addition, so condition (2) holds. Likewise, from the definition of a vector space, condition (3) also holds. Since $W$ is a vector space, we know there is a member $0' \in W$ such that $w + 0' = w$ for all $w\in W$. But since $W \subseteq V$, we have that $w, 0' \in V$. Since the identity of a vector space must be unique (proved in the last class), we must have that $0 = 0'$. Hence, we have $0 \in W$. \bigbreak 
+
+        \textbf{Proof of $(\impliedby)$:} assume that the three conditions hold. We must show that $W$ is a subspace. So we must show that $W$ is a vector space. We have that $0\in W$, so the identity is in $W$. By condition (2), we have that $W$ is closed under addition. By condition (3), we have that $(-1)w\in W$. From the theorem proved yesterday, we have that $(-1)w = -w$ and so the inverse is also in $W$. Hence, we have that $W$ is an abelian group. 
+    \end{proof}
+
+    We will present another example of a subspace that relates to matrices. Before we introduce it, here is a definition. 
+    \begin{defn}{Symmetric Matrices}{}
+        Let $A$ be an $m\times n$ matrix and let $A^T$ denote the transpose of the matrix $A$. Then we say the matrix $A$ is symmetric if $A = A^T$.
+    \end{defn}
+
+    \begin{defn}{Trace}{}
+        Let $A$ be an $n\times n$ matrix. Then the trace of $A$, denoted $\mathrm{tr}(A)$, is the sum of its diagonal elements. 
+    \end{defn}
+
+    Before we present the subspaces, we will introduce the overarching vector space. We let $M_n(\R)$ be the set of all $n\times n$ matrices with real-valued entries. Then we can show that $M_n(\R)$ is a vector space over $\R$ with scalar multiplication defined on matrices element-wise. 
+
+    \begin{example}{}{}
+        Let $W_1 = \mathrm{Sym}_n(\R)$ be the set of all symmetric $n\times n$ matrices. Then $W_1$ is a subspace of $M_n(\R)$ since we have the property $(A+B)^T = A^T + B^T$. \bigbreak 
+
+        Let $W_2$ be all $n\times n$ matrices with trace 0. We can verify that $W_2$ is a subspace by using the property $\mathrm{tr}(A + B) = \mathrm{tr}(A) + \mathrm{tr}(B)$.
+    \end{example}
+
+    Here is a theorem that allows us to construct new subspaces from existing ones. 
+    \begin{thrm}{}{}
+        Let $\mathcal{C}$ be a collection of subspaces of the vector space $V$. Then the intersection of the subspaces in $\mathcal{C}$ is also a subspace of $V$.
+    \end{thrm}
+    \begin{proof}
+        Let $\{W_i\}_{i\in I}$ be an arbitrary collection of subspaces from $\mathcal{C}$. We must show $\bigcap_{i\in I}W_i$ is a subspace. We will show that the three properties hold. 
+
+        \begin{enumerate}
+            \item For all $i\in I$, we have that $W_i$ is subspace of $V$. Hence, we have for all $i\in I$, $0\in W_i$. Thus, it follows that, $0\in \bigcap_{i\in I}W_i$. 
+
+            \item Let $x,y\in \bigcap_{i\in I} W_i$. Then by the definition of intersection, we have $x, y\in W_i$ for all $i\in I$. Since all $W_i$ are subspaces, we have $x+y\in W_i$ for all $i\in I$. Hence, we have $x+y\in \bigcap_{i\in I} W_i$.
+
+            \item Let $x\in \bigcap_{i\in I} W_i$ and let $c\in F$. From the definition of intersection, we have $x\in W_i$ for all $i\in I$. Since all $W_i$ are subspaces, we have $cx\in W_i$. Thus, we have $cx\in \bigcap_{i\in I}W_i$.
+        \end{enumerate}
+    \end{proof}
+
+    \section{Linear Combinations}
+    We will now give the definition of a linear combination, which is central to linear algebra. 
+    \begin{defn}{Linear Combination}{}
+        Let $V$ be a vector space over $F$. Then for $v_1, v_2\in V$ and $c_1, c_2\in F$, a linear combination of $v_1$ and $v_2$ is a vector of the form $c_1v_1 + c_2v_2$. The scalars $c_1$ and $c_2$ are the coefficients of the vectors $v_1$ and $v_2$ respectively.
+    \end{defn}
+    While the definition only gives the linear combination of two vectors, we can use induction to rigorously define a linear combination of a finite set of vectors. Then we have that for vectors $v_1, v_2, ..., v_n\in V$ and scalars $c_1, c_2, ..., c_n \in F$, the linear combination of a finite set of vectors is $c_1v_1 + c_2v_2 + \cdots + c_nv_n$. Here, $c_1, c_2, ..., c_n$ are the coefficients of the vectors. 
+
+    \subsection{Span}
+    The next step to move forward will be to define sets of linear combinations. We present the definition below 
+    \begin{defn}{Span}{}
+        Let $S$ be a non-empty subset of a vector space $V$. Then the span of $S$, denoted $\Span(S)$ is defined to be collection of all finite linear combinations of the elements from $S$.
+    \end{defn}
+
+    \begin{example}
+        Let $V$ be the collection of all sequences of real numbers. For sequences $(a_n)$ and $(b_n)$ define addition component-wise so $(a_n+b_n)_i = (a_n)_i + (b_n)_i$ and define scalar multiplication to be $r(a_n) = (ra_n)$. Then $V$ is a vector space over $\R$. \bigbreak 
+
+        Let $e^i \in V$ be the sequence where $e^i_n = 1$ if $i = n$ and 0 if $i \neq n$. So we have $e^1 = (1, 0, 0, ...)$, $e^2 = (0, 1, 0, ...)$, $e^3 = (0, 0, 1, ...)$. Then we have that $(1, 1, 1, ...) \not\in \Span(S)$. 
+    \end{example}
+
+    The span of a set has some nice properties. The properties are given in the following theorems. 
+    \begin{thrm}{}{}
+        Let $V$ be a vector space over $F$ and let $S \subseteq V$. Then we have 
+        \begin{enumerate}
+            \item $\Span(S)$ is a subspace of $V$.
+            \item If $W$ is a subspace of $V$ containing $S$, then $\Span(S) \subseteq W$. In other words, $\Span(S)$ is the smallest subspace of $V$ that contains $S$.
+        \end{enumerate}
+    \end{thrm}
+    \begin{proof}
+        
+    \end{proof}
+
+    \section{End of Class Problems}
+    The following example is an exercise. It is exercise 10 in section 1.4
+    \begin{example}{}{}
+        Define the matrices as 
+    \end{example}
+\end{document}
