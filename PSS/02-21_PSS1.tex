@@ -1,0 +1,35 @@
+% Since $L$ is invertible, $L^{-1}$ also exists, thus $V$ and $W$ are interchangeable. It follows that the forward and reverse directions imply each other.
+% Then, rank-nullity
+
+\documentclass{article}
+\usepackage{amsmath,amsthm,amssymb}
+
+\title{Proof of \emph{Corollary}}
+\author{Evan Keeton, Saketh Sitaram, and Ravi D'Elia}
+\date{\today}
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\begin{document}
+  \maketitle
+
+  \newtheorem*{crll}{Corollary}
+
+  \begin{crll}
+    Let $L: V \to W$ be a linear transformation which is invertible. Then $V$ is finite-dimensional if and only if $W$ is finite dimensional, and if both are finite dimensional, then the dimension of $V$ equals the dimension of $W$.
+  \end{crll}
+
+  \begin{proof}
+    Note first that, since $L: V \to W$ is invertible, $L^{-1}: W \to V$ is also invertible. Thus, the argument in the forward direction and the reverse direction may be applied equivalently.
+
+    Now, let $\beta = \{\vec{v}_{1},\ldots,\vec{v}_{n}\}$ be a basis of $V$, and let $\gamma = \{L(\vec{v}_{1}),\ldots,L(\vec{v}_{n})\}$ be the image of $\beta$ under $L$. Fix any $\vec{w}\in W$. Since $L$ is invertible, there is some $\vec{v}\in V$ such that $\vec{w} = L(\vec{v})$. This vector, of course, is a linear combination of vectors in $\beta$: that is, $\vec{v} = \sum_{i = 1}^{n} a_{i}\vec{v}_{i}$. Since $L$ is linear, it follows that $\vec{w} = \sum_{i = 1}^{n} a_{i}L(\vec{v}_{i})$. Since this is true for any $\vec{w} \in W$, $\gamma$ is a generating set for $W$. We have shown that this means that $\gamma$ contains a basis of $W$, which must have cardinality less than or equal to $n = \dim V$; thus $W$ is finite, and $\dim W \leq \dim V$.
+
+    Applying the same argument to $L^{-1}$, we find that if $W$ is finite-dimensional, then $V$ is finite dimensional, proving the first half of the corollary. Moreover, we find that $\dim V \leq \dim W$. Of course, since $\dim W \leq \dim V$ and $\dim V \leq \dim W$, then $V$ and $W$ are of the same dimension. This proves the second half of the corollary, completing this proof.
+  \end{proof}
+
+  \subsubsection*{Acknowledgements}
+    Additional credit for the final step of this proof---$\dim W \leq \dim V$ and $\dim V \leq \dim W$ implies $\dim V = \dim W$---goes to Hana Huber for their helpful contribution.
+
+  % dim V \leq dim W
+  % dim W \leq dim V
+\end{document}
