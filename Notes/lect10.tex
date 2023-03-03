@@ -1,0 +1,26 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+    \chapter{ Isomorphism Between Linear Transformations \& Matrices}
+
+    Recall that we have defined the vector space $\mathcal{L}(V,W) = \{L: V \to W \mid L \text{ is linear} \}$. Here is the first proposition about this vector space
+    \begin{thrm}{}{}
+        Let $V,W$ be finite dimensional vector spaces over a field $F$ and let $\beta$ and $\gamma$ be ordered basis of $V$ and $W$ respectively. Then, define the function $\Phi_\beta^\gamma : \mathcal{L}(V,W) \to M_{m\times n}(F)$ as follows
+        \begin{equation*}
+            \Phi_\beta^\gamma(T) = [T]_\beta^\gamma
+        \end{equation*}
+        Then, we have that $\Phi_\beta^\gamma$ is an isomorphism and thus, $\Dim \mathcal{L}(V,W) = mn$.
+    \end{thrm}
+    \begin{proof}
+        We prove that $\Phi_\beta^\gamma$ is linear as follows
+        \begin{align*}
+            \Phi_\beta^\gamma(cT_1 + T_2) &= [ cT_1 + T_2]_\beta^\gamma \\
+            &= [cT_1]_\beta^\gamma + [T_2]_\beta^\gamma \\
+            &= c[T_1]_\beta^\gamma [T_2]_\beta^\gamma \\
+            &= c\Phi_\beta^\gamma (T_1) + \Phi_\beta^\gamma (T_2)
+        \end{align*}
+        And so we have $\Phi_\beta^\gamma$ is linear. \par 
+
+        Now we will define $\phi : M_{m\times n} \to \mathcal{L}(V,W)$. For $A\in M_{m\times n}(F)$, define a linear transformation $\phi(A): V\to W$ as follows: for $v\in V$, we have $\phi(A)(v) = A[v]_\gamma$ where $[v]_\gamma$ is the 
+    \end{proof}
+\end{document}

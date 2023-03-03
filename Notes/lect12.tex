@@ -1,0 +1,82 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+    \chapter{More Dual Spaces \& Rank Of Matrices}
+
+    \section{Dual Spaces (Continued)}
+    In the last lecture, we ended our discussion of dual spaces by proposing a basis for the dual space. Now we will prove some more theorems regarding dual spaces. 
+    \begin{thrm}{}{}
+        Let $V$ and $W$ be finite dimensional vector spaces over $F$. Let $\beta = (b_1, b_2, ..., b_n)$ and $\gamma = (g_1, g_2, ..., g_m)$ be ordered bases of $V$ and $W$ respectively. Suppose $T\in \mathcal{L}(V, W)$ and define $T^\star: W^\star \to V^\star$ as $T^\star (f) = f\circ T$. Then we have 
+        \begin{enumerate}
+            \item $T^\star \in \mathcal{L}(W^\star, V^\star)$. So $T^\star$ is a linear transformation between the dual spaces $W^\star$ and $V^\star$. 
+            \item $[T^\star]_{\gamma^\star}^{\beta^\star} = \left( [T]_\beta^\gamma \right)^T$
+        \end{enumerate}
+    \end{thrm}
+    \begin{proof}
+        \begin{enumerate}
+            \item $T\starsup$ is linear since it is the composition of two linear transformations.
+
+            \item Denote $[T]_\beta^\gamma$ as $A$. We need to show that the $(i,j)$-th element of $[T\starsup]_{\gamma\starsup}^{\beta\starsup}$ is $A_{ji}$. Note that the $j$-th column of $[T\starsup]_{\gamma\starsup}^{\beta\starsup}$ corresponds to the coefficients for $T\starsup(g_j\starsup) = g_j\starsup \circ T$. Now, we get that $g_i\starsup \circ T = \sum_{k=1}^n c_kb_k\starsup$ for some $c_1, ..., c_n\in F$ (since this element is in the dual space and so it has a unique representation in the dual basis). Then, we have that the $i$-th column of $[T\starsup]_{\gamma\starsup}^{\beta\starsup}$ is 
+            \begin{equation*}
+                \begin{bmatrix}
+                    c_1 \\ \vdots \\ c_n
+                \end{bmatrix}
+            \end{equation*}
+            Now for $f\in V\starsup$, we have $f = \sum_{k=1}^n c_kb_k\starsup$. Now observe that we have 
+            \begin{align*}
+                f(b_i) &= \left( \sum_{k=1}^n c_kb_k\starsup \right) (b_j) \\
+                &= \sum_{k=1}^n c_kb_k\starsup (b_j) \\
+                &= \sum_{k=1}^n c_k \delta_{ki} = c_i
+            \end{align*}
+            So we have $c_i = f(b_i)$. So the $(i,j)$-th element of $[T\starsup]_{\gamma\starsup}^{\beta\starsup}$ is $(g_i\starsup \circ T)(b_i) = g_i\starsup(T(b_i))$. Note that $T(b_i) = \sum_{k=1}^m d_kg_k$ (since it is in $W$). So we have $g_i\starsup (T(b_i)) = d_j$, which is the $j$-th element of the $i$-th column of $A$, which is precisely $A_{ji}$. Thus, the desired result is obtained.
+        \end{enumerate}
+    \end{proof}
+
+    \section{Double Dual}
+    Now we will describe the double dual of a vector space. 
+    \begin{defn}{Double Dual Space}{}
+        For a finite dimensional vector space $V$ over a field $F$, the double dual space of $V$, denoted $V\starstar$, is defined to be $\mathcal{L}(V\starsup, F)$.
+    \end{defn}
+    To realize the elements of the double dual, consider $x\in V$. We want to define $\hat{x} : V\starsup \to F$, a linear map. We will define $\hat{x} = f(x)$ where $f\in V\starsup$ (where $f: V\starsup \to F$, is in the dual space of $V$). The following theorem characterizes some nice properties about this function. 
+    \begin{thrm}{}{}
+        Let $V$ be a finite dimensional vector space over $F$. Then $\phi: V\to V\starstar$ defined as $\phi(x) = \hat{x}$ (defined in the preceding discussion). Then the function $\phi$ is an isomorphism. 
+    \end{thrm}
+    \begin{proof}
+        First, show $\phi$ is linear. We need to show $\phi(c_1x_2 + x_2) = \widehat{c_1x_1 + x_2} = c_1\hat{x_1} + \hat{x_2}$. \par 
+
+        Now note that $\Dim (V) = \Dim (V\starsup) = \Dim (V\starstar)$. So we only need to show that $\phi$ is one-to-one (since rank-nullity implies it is onto for equal dimensional vector spaces). So assume $\phi(x) = 0$. So $\hat{x}:V\starsup\to V$ is a zero map. For contradiction, assume $x\neq 0$. Since $\{x\}$ is linearly independent, extended $\{x\}$ to an ordered basis $(b_1, ..., b_n)$ where $b_1 = x$ and $n = \Dim V$. So we have that $\hat{x}(b_1\starsup) = b_1\starsup (x) = b_1\starsup (b_1) = 1 \neq 0$, which contradicts the fact that $\hat{x}$ is a zero map. So we must have that $x = 0$. 
+    \end{proof}
+    The following corollary is to be proved as an exercise. 
+    \begin{cor}{}{}
+        Let $V$ be a finite dimensional vector space over $F$. Then every ordered basis of $V\starsup$ is dual to an ordered basis of $V$. 
+    \end{cor}
+
+    \section{Rank Of Matrices}
+    We have seen the rank of a linear transformation; now we will define the rank of a matrix. 
+    \begin{defn}{Rank Of A Matrix}{}
+        Let $A\in M_{n\times n}(F)$. Then the rank of $A$ is the dimensional of the span of its columns. So $\rank A = \Dim (\Span \{a_1, ..., a_n\})$. 
+    \end{defn}
+    \begin{thrm}{}{}
+        Let $A\in M_{n\times n}(F)$, $P\in GL_n(F)$, and $Q\in GL_n(F)$. Then, we have 
+        \begin{enumerate}
+            \item $\rank (AQ) = \rank A$
+            \item $\rank (PA) = \rank A$
+            \item $\rank (PAQ) = \rank A$
+        \end{enumerate}
+    \end{thrm}
+    \begin{proof}
+        Here is a proof of (2): define $L_A: F^n \to F^n$. Then, we have that 
+        \begin{align*}
+            \rank A &= \Dim (\Range L_A) \\
+            &= \Dim (L_A (F^n))
+        \end{align*}
+        Similarly, we have 
+        \begin{align*}
+            \rank (PA) &= \Dim (\Range L_{PA}) \\
+            &= \Dim (L_{PA}(F^n)) \\
+            &= \Dim (L_P(L_A(F^n)))
+        \end{align*}
+        So we have $L_P: K_A(F^n) \to F^n$. Since $P$ is invertible, we have $\nullity L_P = 0$. So since $P$ is invertible, we have $\Dim (L_A(F^n)) = \Dim (L_P(L_A(F^n)))$, which is the desired result.
+    \end{proof}
+    Note that from elementary row operations, we can view it as left multiplying an elementary row matrix. But by the theorem above, we see that this does not change the rank. In other words, applying an elementary row operation to a matrix preserves its rank. Since a reduced row echelon form of a matrix is obtained through repeated elementary row operations, the reduced row echelon form of a matrix has the same rank as the original. 
+\end{document}
