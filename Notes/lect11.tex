@@ -1,0 +1,93 @@
+\documentclass[main.tex]{subfiles}
+
+
+\begin{document}
+    \chapter{Change Of Basis \& Dual Spaces}
+
+    Last time we saw that $\mathcal{L}(V, W) \cong M_{m\times n}(F)$. In other words, any linear transformation can be represented by a matrix. The proof utilizes the commutative diagram for linear transformations. Namely, we have $\phi_\beta$ is an isomorphism from $V$ to $F^n$ and $\phi_\gamma$ is an isomorphism from $W$ to $F^n$. The functions are given by 
+    \begin{gather*}
+        \phi_\beta (v) = [v]_\beta 
+    \end{gather*}
+
+    \section{Change Of Basis}
+    Here we define the change of basis
+    \begin{defn}{Change Of Basis}{}
+        Let $V$ be a finite dimensional vector space over $F$. Let $\beta$ and $\beta'$ be two (distinct) bases of $V$. Recall that we have the identity transformation $\mathbf{1}_V : V\to V$ and define $Q \coloneqq [\mathbf{1}_{V}]_{\beta}^{\beta'}$
+    \end{defn}
+
+    \begin{thrm}{}{}
+        Let $V$, $\beta$, and $\beta'$ be defined as above. Then we have 
+        \begin{enumerate}
+            \item $Q$ is invertible 
+            \item $[v]_\beta = Q[v]_{\beta'}$
+        \end{enumerate}
+    \end{thrm}
+    \begin{proof}
+        \begin{enumerate}
+            \item Define $P = [\mathbf{1}_V]_\beta^{\beta'}$. We will show $PQ = QP = I$. We have 
+            \begin{equation*}
+                PQ = [\mathbf{1}_V]_\beta^{\beta'} [\mathbf{1}_V]_{\beta'}^\beta = [\mathbf{1}_V \circ \mathbf{1}_V]_{\beta'}^{\beta'} = [\mathbf{1}_V]_{\beta'}^{\beta'}
+            \end{equation*}
+            The other direction for $QP = I$ is similar. 
+
+            \item PSS 1. 
+        \end{enumerate}
+    \end{proof}
+
+    The theorem above relates the matrices of the change of basis. Now, we will consider the transformations themselves. 
+    \begin{thrm}{}{}
+        Let $V$ be a finite dimensional vector space over $F$. Let $T: V\to V$ be a linear transformation and $\beta$ and $\beta'$ be ordered bases of $V$. Define $Q = [\mathbf{1}_V]_\betap^\beta$. Then, we have $[T]_\betap^\betap = Q^{-1}[T]_\beta^\beta Q$.
+    \end{thrm}
+    \begin{proof}
+        It is enough to show $Q[T]_\betap^\betap = [T]_\beta^\beta Q$. Note that $Q = [\identitymapV]_\betap^\beta$. So we have 
+        \begin{align*}
+            Q[T]_\betap^\betap &= [\identitymapV]_\betap^\beta [T]_\betap^\betap \\ 
+            &= [\identitymapV \circ T]_\betap^\beta \\ 
+            &= [T]_\betap^\beta 
+        \end{align*}
+        And similarly, we have 
+        \begin{align*}
+            [T]_\beta^\beta Q &= [T]_\beta^\beta [\identitymapV]_\betap^\beta \\
+            &= [T\circ \identitymapV]_\betap^\beta \\
+            &= [T]_\betap^\beta
+        \end{align*}
+        So the desired result is obtained. 
+    \end{proof}
+
+    The form of the theorem above is very common in linear algebra and it has a special name. 
+    \begin{defn}{Similarity/Conjugates}{}
+        Let $P,Q\in M_{n\times n}(F)$. If there exists $R\in GL_n(F)$ such that $P = RQR^{-1}$, they $P$ and $Q$ are said to be similar or they are conjugates of each other. 
+    \end{defn}
+    \begin{prop}{}{}
+        Similarity of matrices is an equivalence relation in $M_{n\times n}(F)$
+    \end{prop}
+    \begin{proof}
+        PSS 2
+    \end{proof}
+
+    \section{Dual Spaces}
+    Now we will introduce the notion of a dual space. 
+    \begin{defn}{Dual Space}{}
+        Let $V$ be a vector space over a field $F$. Let $\mathcal{L}(V, F)$ be the set of all linear transformations from $V$ to its field of scalars $F$. Then the set $V^\star = \mathcal{L}(V, F)$ is called the dual space of $V$. 
+    \end{defn}
+    If $V$ is a finite dimensional vector space, then we can see $\Dim (V^\star) = \Dim V$. This is because we proved that $\Dim \mathcal{L}(V, W)$ is $\Dim V \cdot \Dim W$. But the dimension of $F$ over itself is just 1 (since a basis would just be $\{1\}$). So the result follows. \par 
+
+    This next theorem proposes a basis for the dual space. 
+    \begin{thrm}{}{}
+        Let $V$ be a vector space over $F$ and let $B$ be a basis of $V$. For all $b\in B$, define $b^\star : V\to F$ as 
+        \begin{equation*}
+            b^\star (v) = \begin{cases}
+                1 & \text{ if } v = b \\
+                0 & \text{ if } v \neq b
+            \end{cases}
+        \end{equation*}
+        Then the set $B^\star = \{b^\star : b\in B\}$ is a basis of $V^\star$ if $V$ is finite dimensional.
+    \end{thrm}
+    \begin{proof}
+        Note that any $T\in V^\star$ is determined by its values on the basis vectors in $B$. Let $B = \{b_1, ..., b_n\}$. Then we have 
+        \begin{equation*}
+            T = T(b_1)b_1^\star + T(b_2)b_2^\star + \cdots + T(b_n)b_n^\star 
+        \end{equation*}
+        So we see that $\Span B^\star = V^\star$. Now we will prove that the set $B^\star$ is linearly independent (PSS 3). 
+    \end{proof}
+\end{document}

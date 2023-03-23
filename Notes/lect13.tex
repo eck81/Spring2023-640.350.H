@@ -1,0 +1,118 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+    \chapter{More On Rank}
+
+    We will prove some more theorems regarding the rank of a matrix today. The ultimate goal is to prove that $\rank A = \rank A^T$. Before we get there, here is a theorem
+    \begin{thrm}{}{}
+        Let $A$ be an $m\times n$ matrix with rank $r$. Then $r \leq m$ and $r \leq n$ and, by means of a finite number of elementary row and column operations, $A$ can be transformed into a matrix of the form below, denoted as $D$. 
+        \begin{equation*}
+            D = \begin{bmatrix}
+                I_r & O_1 \\
+                O_2 & O_3
+            \end{bmatrix}
+        \end{equation*}
+        Where $I_r$ is the $r\times r$ identity matrix, $O_1$ is the $r\times (n-r)$ zero matrix, $O_2$ is the $(m-r)\times r$ zero matrix, and $O_3$ is the $(m-r)\times (n-r)$ zero matrix.
+    \end{thrm}
+    \begin{proof}
+
+    \end{proof}
+
+    \section{Elementary Row \& Column Operations}
+    There are three kinds of elementary row operations. They are 
+    \begin{enumerate}
+        \item Switch two rows, denoted as $R_i \longleftrightarrow R_j$
+        \item Multiply a row by a non-zero scalar, denoted as $R_i \to dR_i$, for $d\neq 0$
+        \item Add a scalar multiple of a row to another row, denoted as $dR_i + R_j \to R_j$
+    \end{enumerate}
+    Additionally, each of the elementary row operations above has a corresponding \emph{elementary column operation}, which is performed on the columns instead of the rows. \par 
+
+    \subsection{Elementary Matrices}
+    Each elementary row operation can be defined using an elementary matrix. The elementary matrix is obtained by performing that row operation on the identity. Namely, define the following 
+    \begin{align*}
+        E_{i\longleftrightarrow j} &= \text{matrix obtained after applying type 1 row operation to the identity} \\ 
+        E_{di} &= \text{matrix obtained after applying type 2 row operation to the identity} \\
+        E_{i+dj} &= \text{matrix obtained after applying type 3 row operation to the identity}
+    \end{align*}
+    Elementary matrices for column operations are defined similarly. The next fact shows how the elementary matrices can be used to apply row/column operations. 
+
+    \begin{quote}
+        Let $A'$ be the matrix obtained from $A$ by a row (column) operation. Then $A' = EA$ ($A' = AG$) where $E$ ($G$) is the matrix corresponding to the row (column) operation as seen above.
+    \end{quote}    
+    Essentially the fact says that multiplying an elementary matrix to a matrix on the correct side has the same effect as applying that elementary row/column operation to that matrix. Using this fact, we can prove this corollary
+    \begin{cor}{}{}
+        Let $A$ be an $m\times n$ matrix such that $\rank A = r$. Then there exist invertible matrices $B$ and $C$ of sizes $m\times m$ and $n\times n$ respectively such that $D = BAC$ (where $D$ is the matrix defined in theorem 13.1)
+    \end{cor}
+    \begin{proof}
+        Theorem 13.1 says that there is a finite set of elementary row/column operations to transform any matrix into that form. Combining this with the last fact, let $E_1, E_2, ..., E_k$ be the elementary matrices for the row operations required and let $G_1, G_2, ..., G_\ell$ be the elementary matrices for the column operations. Define 
+        \begin{align*}
+            E &= E_k\cdots E_3E_2E_1 \\
+            G &= G_1G_2\cdots G_\ell 
+        \end{align*}
+        Then these matrices are the ones that will satisfy the theorem. These matrices are invertible since the product of invertible matrices is also invertible.
+    \end{proof}
+
+    The next corollary will give us an important result. Before, we will define some important terms related to the columns and rows of a matrix. 
+    \begin{defn}{Row \& Column Rank}{}
+        Let $A$ be an $m\times n$ matrix. Then we have 
+        \begin{enumerate}
+            \item The \textbf{row rank} of $A$ is the maximum number of linearly independent rows in $A$ 
+            \item The \textbf{column rank} of $A$ is the maximum number of linearly independent columns in $A$.
+        \end{enumerate}
+    \end{defn}
+    With the terms defined, we can present the corollary. 
+    \begin{cor}{}{}
+        Let $A$ be $m\times n$ matrix. Then we have 
+        \begin{enumerate}
+            \item $\rank A = \rank A^T$
+            \item $\rank A = $ row rank of $A$
+            \item $\rank A = $ column rank of $A$
+        \end{enumerate}
+    \end{cor}
+    \begin{proof}
+        \begin{enumerate}
+            \item PSS 1. 
+            \item Follows from $(1)$ and $(3)$
+            \item This is by definition of $\rank A$.
+        \end{enumerate}
+    \end{proof}
+    The next theorem gives us some extra ways to determine whether a matrix is invertible. 
+    \begin{cor}{}{}
+        A matrix $A$ is inveritble if and only if $A$ is a product of elementary matrices.
+    \end{cor}
+    \begin{proof}
+        Since $A$ is inveritble, it follows that $\rank A = n$ (from rank-nullity theorem). So $D = I_n$. Then $I_n = D = BAC$ and so we have 
+        \begin{align*}
+            A &= B^{-1}C^{-1} \\
+            &= E_1^{-1}E_2^{-1}\cdots E_k^{-1} G_\ell^{-1}\cdots G_1^{-1}
+        \end{align*}
+        And the inverse of an elementary matrix is also elementary. Thus, we have $A$ is a product of elementary matrices as desired. \par 
+
+        The other direction is easy since all elementary matrices are invertible, so their product is also invertible. 
+    \end{proof}
+
+    The next theorem relates the rank of a matrix to the rank of a product of two matrices, which can be viewed as a composition of linear transformations. 
+    \begin{thrm}{}{}
+        Let $A$ and $B$ be matrices such that the product $AB$ is defined. Then, we have
+        \begin{enumerate}
+            \item $\rank AB \leq \rank A$
+            \item $\rank AB \leq \rank B$ 
+        \end{enumerate}
+    \end{thrm}
+    \begin{proof}
+        Observe that by the definition of rank of a matrix, we have
+        \begin{align*}
+            \rank AB &= \rank (L_{AB}) \\
+            &= \Dim (\Range L_{AB}) 
+        \end{align*}
+        Now observe that $\Range L_{AB} \subseteq \Range L_A$. Now, we have that $\Range L_{AB} = L_A(\Range L_B)$, which is a subspace of the domain of $A$. Then, this implies that the result. \par 
+
+        For the second part, observe that 
+        \begin{align*}
+            \rank AB &= \rank (AB)^T \\
+            &= \rank (B^TA^T) \\ 
+            &\leq \rank B^T \\
+            &= \rank B
+        \end{align*}
+    \end{proof}
+\end{document}

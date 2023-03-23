@@ -1,0 +1,152 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+    \chapter{Determinants}  
+
+    We will now start talking about determinants. It should be noted that all matrices from now on are square matrices. 
+
+    \section{Rigorous Definition Of The Determinant}
+    We will define a function $\det_n: M_{n\times n}\left(F \right) \to F$ by induction on $n$. Here is a brief recap on the principle of mathematical induction. For a subset $S\subseteq \N$ if we have 
+    \begin{enumerate}
+        \item $1\in S$ 
+        \item for all $n\in S$, if $n+1\in S$, then $S = \N$
+    \end{enumerate}
+    So consider the set $S = \{n\in \N : \det_n \text{ is well-defined} \}$. So for all $n\in S$, if $\det_n$ is defined then so is $\det_{n+1}$. Now we will define the determinant function as follows. 
+    \begin{enumerate}
+        \item Define $\det_1 : M_{1\times 1}(F) \to F$ as $\det_1 \left( [a] \right) = a$. 
+
+        \item Assume we know that $\det_n : M_{n\times n}(F) \to F$ is. Let $A\in M_{(n+1)\times (n+1)}(F)$ and let $\hat{A}_{ij}$ be the submatrix of $A$ that is obtained by crossing out the $i$-th row and the $j$-th column of $A$. Then we define the function as 
+            \begin{equation*}
+                \det_{n+1} (A) = \sum_{j=1}^{n} (-1)^{i+j} a_{ij} \det \left( \hat{A}_{ij} \right)
+            \end{equation*}
+    \end{enumerate}
+    Thus, with the definition above, we have defined the determinant of the function. Note that for convienience, we will drop the subscript for $n$. As a concrete example, we have 
+    \begin{equation*}
+            \det \begin{bmatrix}
+                1 & 2 & 5 \\ 0 & 1 & -1 \\ 1 & 0 & 2 
+            \end{bmatrix} = 1\times \det \begin{bmatrix}
+                1 & -1 \\ 0 & 2 
+            \end{bmatrix} - 2 \times \det \begin{bmatrix}
+                0 & -1 \\ 1 & 2 
+            \end{bmatrix} + 5 \times \det \begin{bmatrix}
+                0 & 1 \\ 1 & 0 
+            \end{bmatrix}
+    \end{equation*}
+
+    \section{Theorems Regarding Determinants}
+    While the determinant seems very messy, there are some nice properties that it has. This will be the discussion in some of the next theorems. 
+    \begin{thrm}{}{}
+            The determinant of an $n\times n$ matrix is a linear function on each row when the remaning rows are fixed. That is, we have 
+            \begin{equation*}
+                    \det \begin{bmatrix}
+                            a_1 \\ a_2 \\ \vdots \\ a_i + ka_i' \\ \vdots \\ a_n
+                    \end{bmatrix} = \det \begin{bmatrix}
+                            a_1 \\ a_2 \\ \vdots \\ a_i' \\ \vdots \\ a_n
+                    \end{bmatrix} + k\det \begin{bmatrix}
+                            a_1 \\ a_2 \\ \vdots \\ a_i' \\ \vdots \\ a_n
+                    \end{bmatrix}
+            \end{equation*}
+    \end{thrm}
+    \begin{proof}
+        PSS 1. 
+    \end{proof}
+
+    The theorem above has a useful corollary, which is useful for quickly seeing the determinant. 
+    \begin{cor}{}{}
+        If $A\in M_{n\times n}(F)$ has a zero row, then $\det A = 0$.
+    \end{cor}
+    \begin{proof}
+        Exercise. 
+    \end{proof}
+
+    The next theorem can simplify the calculation of the determinant by letting us expand along any row. 
+    \begin{thrm}{}{}
+        Let $A\in M_{n\times n}(F)$ and let $\hat{A}_{ij}$ be the submatrix of $A$ obtained by corssing out the $i$-th row and $j$-th column. Then, we have 
+        \begin{equation*}
+            \det A = \sum_{j=1}^{n} (-1)^{i+j} a_{ij} \det \left( \hat{A}_{ij} \right)
+        \end{equation*}
+    \end{thrm}
+    \begin{proof}
+        Next class.
+    \end{proof}
+
+    This is another theorem that can be used to simplify calculations of the determinant. 
+    \begin{thrm}{}{}
+        If $A\in M_{n\times n}(F)$ has two identical rows, then $\det A = 0$. 
+    \end{thrm}
+    \begin{proof}
+            PSS2. 
+    \end{proof}
+
+    The theorems below relate to how elementary row operations on matrices change the determinant of a matrix. 
+    \begin{thrm}{}{}
+        Let $A\in M_{n\times n}(F)$ and $B$ be the matrix obtained by interchanging two rows of $A$. Then, we have $\det A = -\det B$. 
+    \end{thrm}
+    \begin{proof}
+        Let $A = \begin{bmatrix}
+                a_1 \\ \vdots \\ a_r \\ \vdots \\ a_s \vdots \\ a_n
+        \end{bmatrix}$ and $B = \begin{bmatrix}
+                a_1 \\ \vdots \\ a_s \\ \vdots \\ a_r \\ \vdots \\ a_n
+        \end{bmatrix}$ where $a_i$'s are all row vectors. Now, observe we have 
+        \begin{equation*}
+                \det \begin{bmatrix}
+                        a_1 \\ \vdots \\ a_r + a_s \\ \vdots \\ a_r + a_s \\ \vdots \\ a_n
+                \end{bmatrix} = 0
+        \end{equation*}
+        since it has two identical rows. Now, we can expand this as follows 
+        \begin{align*}
+            0 &= \det \begin{bmatrix}
+                    a_1 \\ \vdots \\ a_r + a_s \\ \vdots \\ a_r + a_s \\ \vdots \\ a_n
+            \end{bmatrix} \\ 
+              &= 
+        \end{align*}
+        And so it follows that $\det B = -\det A$. 
+    \end{proof}
+
+    \begin{thrm}{}{}
+        Let $A \in M_{n\times n}(F)$ and let $B$ be the matrix obtained from $A$ by adding a scalar multiple of one row to another. Then, we have $\det A = \det B$. 
+    \end{thrm}
+    \begin{proof}
+        PSS 3. 
+    \end{proof}
+    This theorem has a useful corollary that is given below 
+    \begin{cor}{}{}
+        Let $A\in M_{n\times n}(F)$. Then, we have $\rank A = n$ if and only if $\det A \neq 0$. 
+    \end{cor}
+
+    \section{Determinants And Transformations}
+
+    We will start this section by proving this useful theorem. 
+    \begin{thrm}{}{}
+        For square matrices $A$ and $B$ of the same size, we have $\det (AB) = \det A \cdot \det B$. 
+    \end{thrm}
+    \begin{proof}
+       We have that $\rank AB \leq \min (\rank A, \rank B)$. If one of $A$ or $B$ has determinant 0, then $\rank AB < n$, which implies that $\det AB = 0$. \par 
+
+       Now assume that both have nonzero determinant. This means they both have rank $n$. From earlier results, we know that this means both matrices are invertible. So this means that 
+       \begin{align*}
+            A &= E_n \cdots E_2E_1
+       \end{align*}
+       And so we use this to get 
+       \begin{align*}
+            \det (AB) &= \det (E_n \cdots E_2E_1 B) \\ 
+                      &= \det (E_n) \det (E_{n-1} \cdots E_1B)
+       \end{align*}
+    \end{proof}
+
+    The next theorem relates the determinant of an invertible matrix to its inverse. 
+    \begin{thrm}{}{}
+        Let $A\in GL_n(F)$, then $\det \left( A^{-1} \right) = \frac{1}{\det A}$. 
+    \end{thrm}
+    \begin{proof}
+        Exercise. 
+    \end{proof}
+
+    And this theorem relates the determinant of a matrix to its transpose. 
+    \begin{thrm}{}{}
+        For a square matrix $A\in M_{n\times n}(F)$, we have $\det (A^T) = \det A$
+    \end{thrm}
+    \begin{proof}
+        PSS 4. 
+    \end{proof}
+\end{document}
