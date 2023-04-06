@@ -1,0 +1,36 @@
+\documentclass[boxes,sansserif]{rutgers_hw}
+\usepackage{rutgers}
+
+\author{Ravi D'Elia}
+\netid{rjd280}
+
+\assignment{PSS-1} % Enter the assignment name
+\date{2023-04-06} % Replace with due date
+\institution{Rutgers University} % Enter your university
+
+\begin{document}
+\maketitle
+\setlength\parindent{0pt}
+
+We seek to prove that \textbf{IV} implies \textbf{I}.
+
+Let $V$ be a vector space, $\left\{ W_i \right\} \subset V$, $\gamma_i$ be a basis of $W_i$,
+and $\cup_i \gamma_i$ is a basis of all of $V$.
+
+First we must show that arbitrary sums of $W_i$s intersect only at $0$. Suppose that
+$\exists v \in W_i$ such that $v = \sum w_j$ for $w_j \in W_j$, $j \in 1..(i-1)$. But then
+we have
+\begin{displaymath}
+  \sum_{j = 1} a_j \gamma_i^j = \sum b_k \gamma_1^k + ... + \sum b_k \gamma_j^k
+\end{displaymath}
+But then $v$ can be uniquely specified as linear combinations of all $\gamma_i^j$ in more
+than one way, contradicting that it is a basis. So there can be no non-zero intersections.
+
+Now we must show that $v \in V$ can be represented as a sum of elements of each $W_i$. This
+is trivial. As $\gamma_i^j$ is a basis, we have
+\begin{displaymath}
+  v = \sum a_i^j \gamma_i^j = \sum_i \sum_j a_i^j \gamma_i^j = \sum_i w_i
+\end{displaymath}
+for $w_i \in W_i$. 
+
+\end{document}
